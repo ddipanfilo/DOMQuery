@@ -41,3 +41,7 @@ li {
   height: 20px;
   border: 1px solid green;
 }
+
+.snake {
+  background: green;
+}
