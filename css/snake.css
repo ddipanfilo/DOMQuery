@@ -1,9 +1,27 @@
-html, body, figure, figcaption, ul, li, h1 {
+html, body, figure, figcaption, ul, li {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
   text-align: inherit;
+}
+
+/*.group:after {
+  content: "";
+  clear: both;
+  display: block;
+}*/
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-family: sans-serif;
+  text-align: center;
 }
 
 ul {
@@ -13,4 +31,13 @@ ul {
 figure {
   display: inline-block;
   border: 10px solid black;
+  height: 440px;
+  width: 440px;
+}
+
+li {
+  float: left;
+  width: 20px;
+  height: 20px;
+  border: 1px solid green;
 }

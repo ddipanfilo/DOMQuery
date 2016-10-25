@@ -1,3 +1,5 @@
+const Coordinates = require('./coordinates');
+
 class Snake {
   constructor(board) {
     this.direction = "N";

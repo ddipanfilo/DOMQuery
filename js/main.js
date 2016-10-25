@@ -1,6 +1,6 @@
-const View = require('./snake-view');
+const View = require('./snake-view.js');
 
-$l(function () {
+$l(() => {
   const rootEl = $l('.snake-game');
   new View(rootEl);
 });

@@ -1,3 +1,5 @@
+const Snake = require('./snake');
+
 class Board {
   constructor(dim) {
     this.dim = dim;

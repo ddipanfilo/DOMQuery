@@ -56,11 +56,17 @@
 	      if (arg instanceof HTMLElement) { return new DOMNodeCollection([arg]); }
 	      break;
 	    case "string":
-	      const nodes = document.querySelectorAll(arg);
-	      const nodes_array = Array.from(nodes);
-	      return new DOMNodeCollection(nodes_array);
+	      if (arg[0] === "<") {
+	        const tag = arg.slice(1, -1);
+	        return new DOMNodeCollection([document.createElement(tag)]);
+	      } else {
+	        const nodes = document.querySelectorAll(arg);
+	        const nodes_array = Array.from(nodes);
+	        return new DOMNodeCollection(nodes_array);
+	      }
+	      break;
 	    case "function":
-	      return handleReadyCallback;
+	      return handleReadyCallback(arg);
 	  }
 	};
 

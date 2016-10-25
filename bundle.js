@@ -46,7 +46,7 @@
 
 	const View = __webpack_require__(1);
 	
-	$l(function () {
+	$l(() => {
 	  const rootEl = $l('.snake-game');
 	  new View(rootEl);
 	});
@@ -61,15 +61,16 @@
 	class View {
 	  constructor($el) {
 	    this.$el = $el;
-	
 	    this.board = new Board(20);
+	    this.setupBoard();
 	  }
 	
 	  setupBoard(){
 	    const $board = $l('<ul>');
 	    $board.addClass("board");
+	    $board.addClass("group");
 	
-	    for (let i = 0; i < Math.pow(this.board.size, 2); i++) {
+	    for (let i = 0; i < Math.pow(this.board.dim, 2); i++) {
 	      let $li = $l('<li>');
 	      $li.addClass('tile');
 	      $board.append($li);
@@ -84,8 +85,10 @@
 
 /***/ },
 /* 2 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
+	const Snake = __webpack_require__(3);
+	
 	class Board {
 	  constructor(dim) {
 	    this.dim = dim;
@@ -95,6 +98,68 @@
 	}
 	
 	module.exports = Board;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	const Coordinates = __webpack_require__(4);
+	
+	class Snake {
+	  constructor(board) {
+	    this.direction = "N";
+	    const center = new Coordinates(4, 4);
+	    this.segments = [center];
+	  }
+	
+	  head(){
+	    return this.segments.slice(-1)[0];
+	  }
+	
+	  move(){
+	    this.segments.push(this.head().plus(Snake.DIFFS[this.direction]));
+	  }
+	
+	  turn(direction){
+	    this.direction = direction;
+	  }
+	}
+	
+	Snake.DIRECTIONS = {
+	  "N": new Coordinates(-1, 0),
+	  "S": new Coordinates(1, 0),
+	  "E": new Coordinates(0, 1),
+	  "W": new Coordinates(0, -1)
+	};
+	
+	module.exports = Snake;
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	class Coordinates {
+	  constructor(i, j) {
+	    this.i = i;
+	    this.j = j;
+	  }
+	
+	  equals(coordinate2) {
+	    return (this.i == coordinate2) && (this.j == coord2.j);
+	  }
+	
+	  plus(coordinate2) {
+	    return new Coord(this.i + coordinate2.i, this.j + coordinate2.j);
+	  }
+	
+	  isOpposite(coordinate){
+	    return (this.i == -1 * coordinate2.i) && (this.j == (-1 * coordinate.j));
+	  }
+	}
+	
+	module.exports = Coordinates;
 
 
 /***/ }
