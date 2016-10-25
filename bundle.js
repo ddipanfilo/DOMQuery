@@ -44,23 +44,57 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	const SnakeView = __webpack_require__(1);
+	const View = __webpack_require__(1);
 	
 	$l(function () {
 	  const rootEl = $l('.snake-game');
-	  new SnakeView(rootEl);
+	  new View(rootEl);
 	});
 
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	class View {
+	const Board = __webpack_require__(2);
 	
+	class View {
+	  constructor($el) {
+	    this.$el = $el;
+	
+	    this.board = new Board(20);
+	  }
+	
+	  setupBoard(){
+	    const $board = $l('<ul>');
+	    $board.addClass("board");
+	
+	    for (let i = 0; i < Math.pow(this.board.size, 2); i++) {
+	      let $li = $l('<li>');
+	      $li.addClass('tile');
+	      $board.append($li);
+	    }
+	
+	    this.$el.append($board);
+	  }
 	}
 	
 	module.exports = View;
+
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	class Board {
+	  constructor(dim) {
+	    this.dim = dim;
+	
+	    this.snake = new Snake(this);
+	  }
+	}
+	
+	module.exports = Board;
 
 
 /***/ }
