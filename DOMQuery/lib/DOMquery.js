@@ -51,6 +51,7 @@
 	let ready = false;
 
 	window.$l = arg => {
+	  console.log("loading");
 	  switch(typeof(arg)){
 	    case "object":
 	      if (arg instanceof HTMLElement || arg === window) {

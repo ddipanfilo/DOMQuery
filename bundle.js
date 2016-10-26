@@ -46,7 +46,7 @@
 
 	const View = __webpack_require__(1);
 	
-	$l(() => {
+	window.$l(() => {
 	  const rootEl = $l('.snake-game');
 	  new View(rootEl);
 	});
