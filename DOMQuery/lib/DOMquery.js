@@ -238,6 +238,10 @@
 	      node.removeEventListener(eventType, callback);
 	    });
 	  }
+
+	  eq(index) {
+	    return $l(this.nodes[index]);
+	  }
 	}
 
 	module.exports = DOMNodeCollection;

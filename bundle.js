@@ -63,6 +63,14 @@
 	    this.$el = $el;
 	    this.board = new Board(20);
 	    this.setupBoard();
+	
+	    this.invervalId = window.setInterval(this.step.bind(this), 100);
+	
+	    // $l(window).on("keydown", this.handleKeyEvent.bind(this));
+	  }
+	
+	  handleKeyEvent(event) {
+	
 	  }
 	
 	  setupBoard(){
@@ -71,13 +79,31 @@
 	
 	    for (let i = 0; i < Math.pow(this.board.dim, 2); i++) {
 	      let $li = $l('<li>');
-	      $li.addClass('tile');
 	      $board.append($li);
 	    }
 	
 	    this.$el.append($board);
+	    this.$lis = this.$el.find("li");
+	  }
+	
+	  render(){
+	    // this.$el.html(this.board.render());
+	    let snakeCoordinates = this.board.snake.segments;
+	    snakeCoordinates.forEach(coordinate => {
+	      const flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
+	      this.$lis.eq(flatCoordinateIndex).addClass("snake");
+	    });
+	  }
+	
+	  step() {
+	    if (this.board.snake.segments.length > 0) {
+	      this.board.snake.move();
+	      this.render();
+	    }
 	  }
 	}
+	
+	View.MOVES = { 38: "N", 40: "S", 39: "E", 37: "W"};
 	
 	module.exports = View;
 
@@ -94,6 +120,31 @@
 	
 	    this.snake = new Snake(this);
 	  }
+	
+	  static blankGrid(dim) {
+	    const grid = [];
+	
+	    for (let i = 0; i < dim; i++) {
+	      const row = [];
+	      for (let j = 0; j < dim; j++) {
+	        row.push(".");
+	      }
+	      grid.push(row);
+	    }
+	
+	    return grid;
+	  }
+	
+	  render() {
+	    const blankGrid = Board.blankGrid(this.dim);
+	
+	    this.snake.segments.forEach( segment => {
+	      blankGrid[segment.i][segment.j] = "S";
+	    });
+	
+	    const rowStrs = [];
+	    blankGrid.map( row => row.join("") ).join("\n");
+	  }
 	}
 	
 	module.exports = Board;
@@ -108,7 +159,7 @@
 	class Snake {
 	  constructor(board) {
 	    this.direction = "N";
-	    const center = new Coordinates(4, 4);
+	    const center = new Coordinates(12, 8);
 	    this.segments = [center];
 	  }
 	
@@ -117,7 +168,7 @@
 	  }
 	
 	  move(){
-	    this.segments.push(this.head().plus(Snake.DIFFS[this.direction]));
+	    this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
 	  }
 	
 	  turn(direction){
@@ -131,6 +182,8 @@
 	  "E": new Coordinates(0, 1),
 	  "W": new Coordinates(0, -1)
 	};
+	
+	Snake.symbol = "S";
 	
 	module.exports = Snake;
 
@@ -150,7 +203,7 @@
 	  }
 	
 	  plus(coordinate2) {
-	    return new Coord(this.i + coordinate2.i, this.j + coordinate2.j);
+	    return new Coordinates(this.i + coordinate2.i, this.j + coordinate2.j);
 	  }
 	
 	  isOpposite(coordinate){

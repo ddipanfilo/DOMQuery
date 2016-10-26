@@ -9,7 +9,7 @@ class Coordinates {
   }
 
   plus(coordinate2) {
-    return new Coord(this.i + coordinate2.i, this.j + coordinate2.j);
+    return new Coordinates(this.i + coordinate2.i, this.j + coordinate2.j);
   }
 
   isOpposite(coordinate){

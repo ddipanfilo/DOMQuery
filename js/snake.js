@@ -3,7 +3,7 @@ const Coordinates = require('./coordinates');
 class Snake {
   constructor(board) {
     this.direction = "N";
-    const center = new Coordinates(4, 4);
+    const center = new Coordinates(12, 8);
     this.segments = [center];
   }
 
@@ -12,7 +12,7 @@ class Snake {
   }
 
   move(){
-    this.segments.push(this.head().plus(Snake.DIFFS[this.direction]));
+    this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
   }
 
   turn(direction){
@@ -26,5 +26,7 @@ Snake.DIRECTIONS = {
   "E": new Coordinates(0, 1),
   "W": new Coordinates(0, -1)
 };
+
+Snake.symbol = "S";
 
 module.exports = Snake;
