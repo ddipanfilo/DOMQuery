@@ -35,7 +35,7 @@ class Snake {
 
   eatApple(){
     if (this.head().equals(this.board.apple.position)) {
-      this.growTurns += 3;
+      this.growTurns += 20;
       return true;
     } else {
       return false;
@@ -59,11 +59,16 @@ class Snake {
   }
 
   occupying(array){
+    let result = false;
+
     this.segments.forEach( segment => {
-      if (segment.i === array[0] && segment.j === array[1]) { return true; }
+      if (segment.i === array[0] && segment.j === array[1]) {
+        result = true;
+        return true;
+      }
     });
 
-    return false;
+    return result;
   }
 }
 
