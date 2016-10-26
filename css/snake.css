@@ -6,12 +6,6 @@ html, body, figure, figcaption, ul, li {
   text-align: inherit;
 }
 
-/*.group:after {
-  content: "";
-  clear: both;
-  display: block;
-}*/
-
 body {
   display: flex;
   flex-direction: column;
