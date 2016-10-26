@@ -2,6 +2,7 @@ const Coordinates = require('./coordinates');
 
 class Snake {
   constructor(board) {
+    this.board = board;
     this.direction = "N";
     const center = new Coordinates(12, 8);
     this.segments = [center];
@@ -14,6 +15,18 @@ class Snake {
   move(){
     this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
     this.segments.shift();
+
+    if (!this.validMove()) {
+      this.segments = [];
+    }
+  }
+
+  validMove(){
+    if (!this.board.validPosition(this.head())) {
+      return false;
+    }
+
+    return true;
   }
 
   turn(direction){

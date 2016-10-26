@@ -31,6 +31,11 @@ class Board {
     const rowStrs = [];
     blankGrid.map( row => row.join("") ).join("\n");
   }
+
+  validPosition(coordinate) {
+    return (coordinate.i >= 0) && (coordinate.i < this.dim) &&
+    (coordinate.j >= 0) && (coordinate.j < this.dim);
+  }
 }
 
 module.exports = Board;

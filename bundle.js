@@ -146,6 +146,11 @@
 	    const rowStrs = [];
 	    blankGrid.map( row => row.join("") ).join("\n");
 	  }
+	
+	  validPosition(coordinate) {
+	    return (coordinate.i >= 0) && (coordinate.i < this.dim) &&
+	    (coordinate.j >= 0) && (coordinate.j < this.dim);
+	  }
 	}
 	
 	module.exports = Board;
@@ -159,6 +164,7 @@
 	
 	class Snake {
 	  constructor(board) {
+	    this.board = board;
 	    this.direction = "N";
 	    const center = new Coordinates(12, 8);
 	    this.segments = [center];
@@ -171,6 +177,18 @@
 	  move(){
 	    this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
 	    this.segments.shift();
+	
+	    if (!this.validMove()) {
+	      this.segments = [];
+	    }
+	  }
+	
+	  validMove(){
+	    if (!this.board.validPosition(this.head())) {
+	      return false;
+	    }
+	
+	    return true;
 	  }
 	
 	  turn(direction){
