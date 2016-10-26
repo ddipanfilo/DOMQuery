@@ -53,7 +53,9 @@
 	window.$l = arg => {
 	  switch(typeof(arg)){
 	    case "object":
-	      if (arg instanceof HTMLElement) { return new DOMNodeCollection([arg]); }
+	      if (arg instanceof HTMLElement || arg === window) {
+	        return new DOMNodeCollection([arg]);
+	      }
 	      break;
 	    case "string":
 	      if (arg[0] === "<") {

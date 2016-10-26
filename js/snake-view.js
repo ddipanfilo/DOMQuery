@@ -7,11 +7,14 @@ class View {
     this.setupBoard();
 
     this.invervalId = window.setInterval(this.step.bind(this), 100);
-    // $l(window).on("keydown", this.handleKeyEvent.bind(this));
+
+    $l(window).on("keydown", this.handleKeyEvent.bind(this));
   }
 
-  handleKeyEvent(event) {
-
+  handleKeyEvent(e) {
+    if (View.MOVES[e.keyCode]) {
+      this.board.snake.turn(View.MOVES[event.keyCode]);
+    }
   }
 
   setupBoard(){
