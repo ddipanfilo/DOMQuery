@@ -16,6 +16,8 @@ class View {
   handleKeyEvent(e) {
     if (View.MOVES[e.keyCode]) {
       this.board.snake.turn(View.MOVES[event.keyCode]);
+    } else if (e.keyCode === 13 ){
+      window.location = "http://www.daviddipanfilo.com/DOMQuery";
     }
   }
 
