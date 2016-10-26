@@ -7,6 +7,7 @@ class Board {
 
     this.snake = new Snake(this);
     this.apple = new Apple(this);
+    this.score = 0;
   }
 
   static blankGrid(dim) {

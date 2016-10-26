@@ -53,7 +53,10 @@ class View {
       this.board.snake.move();
       this.render();
     } else {
-      alert("game over");
+      const currentScore = this.board.score;
+      if (currentScore > parseInt(window.localStorage.highScore)) {
+        localStorage.setItem("highScore", currentScore);
+      }
       window.clearInterval(this.intervalId);
     }
   }

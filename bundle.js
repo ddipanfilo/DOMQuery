@@ -111,7 +111,10 @@
 	      this.board.snake.move();
 	      this.render();
 	    } else {
-	      alert("game over");
+	      const currentScore = this.board.score;
+	      if (currentScore > parseInt(window.localStorage.highScore)) {
+	        localStorage.setItem("highScore", currentScore);
+	      }
 	      window.clearInterval(this.intervalId);
 	    }
 	  }
@@ -135,6 +138,7 @@
 	
 	    this.snake = new Snake(this);
 	    this.apple = new Apple(this);
+	    this.score = 0;
 	  }
 	
 	  static blankGrid(dim) {
@@ -197,6 +201,7 @@
 	
 	    if (this.eatApple()) {
 	      this.board.apple.spawn();
+	      this.board.score += 10;
 	    }
 	
 	    if (this.growTurns > 0) {

@@ -20,6 +20,7 @@ class Snake {
 
     if (this.eatApple()) {
       this.board.apple.spawn();
+      this.board.score += 10;
     }
 
     if (this.growTurns > 0) {
