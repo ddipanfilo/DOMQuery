@@ -64,7 +64,7 @@
 	    this.board = new Board(20);
 	    this.setupBoard();
 	
-	    this.invervalId = window.setInterval(this.step.bind(this), 100);
+	    this.intervalId = window.setInterval(this.step.bind(this), 100);
 	
 	    $l(window).on("keydown", this.handleKeyEvent.bind(this));
 	  }
@@ -110,6 +110,9 @@
 	    if (this.board.snake.segments.length > 0) {
 	      this.board.snake.move();
 	      this.render();
+	    } else {
+	      alert("game over");
+	      window.clearInterval(this.intervalId);
 	    }
 	  }
 	}
