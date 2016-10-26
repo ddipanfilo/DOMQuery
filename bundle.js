@@ -125,9 +125,13 @@
 	
 	  populateScores(){
 	    let highScore = localStorage.getItem("highScore") || 150;
-	    $l(".high-score").text(`Highscore: ${highScore}`);
-	
 	    let currentScore = this.board.score;
+	
+	    if (currentScore > highScore) {
+	      $l(".high-score").text(`Highscore: ${currentScore}`);
+	    } else {
+	      $l(".high-score").text(`Highscore: ${highScore}`);
+	    }
 	    $l(".current-score").text(`Current Score: ${currentScore}`);
 	  }
 	}
