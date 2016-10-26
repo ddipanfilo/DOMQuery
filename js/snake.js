@@ -13,6 +13,7 @@ class Snake {
 
   move(){
     this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
+    this.segments.shift();
   }
 
   turn(direction){

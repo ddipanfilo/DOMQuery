@@ -65,7 +65,6 @@
 	    this.setupBoard();
 	
 	    this.invervalId = window.setInterval(this.step.bind(this), 100);
-	
 	    // $l(window).on("keydown", this.handleKeyEvent.bind(this));
 	  }
 	
@@ -89,6 +88,8 @@
 	  render(){
 	    // this.$el.html(this.board.render());
 	    let snakeCoordinates = this.board.snake.segments;
+	    (this.$lis).removeClass("snake");
+	
 	    snakeCoordinates.forEach(coordinate => {
 	      const flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
 	      this.$lis.eq(flatCoordinateIndex).addClass("snake");
@@ -169,6 +170,7 @@
 	
 	  move(){
 	    this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
+	    this.segments.shift();
 	  }
 	
 	  turn(direction){
