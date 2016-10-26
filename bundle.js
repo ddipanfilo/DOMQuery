@@ -195,7 +195,9 @@
 	  }
 	
 	  turn(direction){
-	    this.direction = direction;
+	    if (!Snake.DIRECTIONS[this.direction].isOpposite(Snake.DIRECTIONS[direction])) {
+	      this.direction = direction;
+	    }
 	  }
 	}
 	
@@ -229,8 +231,8 @@
 	    return new Coordinates(this.i + coordinate2.i, this.j + coordinate2.j);
 	  }
 	
-	  isOpposite(coordinate){
-	    return (this.i == -1 * coordinate2.i) && (this.j == (-1 * coordinate.j));
+	  isOpposite(coordinate2){
+	    return (this.i == -1 * coordinate2.i) && (this.j == (-1 * coordinate2.j));
 	  }
 	}
 	

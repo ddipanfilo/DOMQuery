@@ -30,7 +30,9 @@ class Snake {
   }
 
   turn(direction){
-    this.direction = direction;
+    if (!Snake.DIRECTIONS[this.direction].isOpposite(Snake.DIRECTIONS[direction])) {
+      this.direction = direction;
+    }
   }
 }
 
