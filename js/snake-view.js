@@ -31,13 +31,20 @@ class View {
   }
 
   render(){
-    // this.$el.html(this.board.render());
     let snakeCoordinates = this.board.snake.segments;
+    let appleCoordinates = [this.board.apple.position];
+
     (this.$lis).removeClass("snake");
+    (this.$lis).removeClass("apple");
 
     snakeCoordinates.forEach(coordinate => {
-      const flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
+      let flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
       this.$lis.eq(flatCoordinateIndex).addClass("snake");
+    });
+
+    appleCoordinates.forEach(coordinate => {
+      let flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
+      this.$lis.eq(flatCoordinateIndex).addClass("apple");
     });
   }
 

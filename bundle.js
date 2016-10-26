@@ -89,13 +89,20 @@
 	  }
 	
 	  render(){
-	    // this.$el.html(this.board.render());
 	    let snakeCoordinates = this.board.snake.segments;
+	    let appleCoordinates = [this.board.apple.position];
+	
 	    (this.$lis).removeClass("snake");
+	    (this.$lis).removeClass("apple");
 	
 	    snakeCoordinates.forEach(coordinate => {
-	      const flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
+	      let flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
 	      this.$lis.eq(flatCoordinateIndex).addClass("snake");
+	    });
+	
+	    appleCoordinates.forEach(coordinate => {
+	      let flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
+	      this.$lis.eq(flatCoordinateIndex).addClass("apple");
 	    });
 	  }
 	
@@ -117,12 +124,14 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	const Snake = __webpack_require__(3);
+	const Apple = __webpack_require__(5);
 	
 	class Board {
 	  constructor(dim) {
 	    this.dim = dim;
 	
 	    this.snake = new Snake(this);
+	    this.apple = new Apple(this);
 	  }
 	
 	  static blankGrid(dim) {
@@ -199,6 +208,14 @@
 	      this.direction = direction;
 	    }
 	  }
+	
+	  occupying(array){
+	    this.segments.forEach( segment => {
+	      if (segment.i === array[0] && segment.j === array[1]) { return true; }
+	    });
+	
+	    return false;
+	  }
 	}
 	
 	Snake.DIRECTIONS = {
@@ -237,6 +254,34 @@
 	}
 	
 	module.exports = Coordinates;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	const Coordinate = __webpack_require__(4);
+	
+	class Apple {
+	  constructor(board) {
+	    this.board = board;
+	    this.spawn();
+	  }
+	
+	  spawn() {
+	    let x = Math.floor(Math.random() * this.board.dim);
+	    let y = Math.floor(Math.random() * this.board.dim);
+	
+	    while (this.board.snake.occupying([x, y])) {
+	      x = Math.floor(Math.random() * this.board.dim);
+	      y = Math.floor(Math.random() * this.board.dim);
+	    }
+	
+	    this.position = new Coordinate(x, y);
+	  }
+	}
+	
+	module.exports = Apple;
 
 
 /***/ }

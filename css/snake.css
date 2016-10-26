@@ -38,6 +38,10 @@ li {
   background: green;
 }
 
+.apple {
+  background: red;
+}
+
 a {
   text-decoration: none;
 }

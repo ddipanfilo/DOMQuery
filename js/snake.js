@@ -34,6 +34,14 @@ class Snake {
       this.direction = direction;
     }
   }
+
+  occupying(array){
+    this.segments.forEach( segment => {
+      if (segment.i === array[0] && segment.j === array[1]) { return true; }
+    });
+
+    return false;
+  }
 }
 
 Snake.DIRECTIONS = {

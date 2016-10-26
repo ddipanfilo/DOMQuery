@@ -1,10 +1,12 @@
 const Snake = require('./snake');
+const Apple = require('./apple');
 
 class Board {
   constructor(dim) {
     this.dim = dim;
 
     this.snake = new Snake(this);
+    this.apple = new Apple(this);
   }
 
   static blankGrid(dim) {
