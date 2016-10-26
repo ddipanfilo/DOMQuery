@@ -5,7 +5,9 @@ class Coordinates {
   }
 
   equals(coordinate2) {
-    return (this.i == coordinate2) && (this.j == coord2.j);
+    if ((this.i === coordinate2.i) && (this.j === coordinate2.j)) {
+      return (this.i === coordinate2.i) && (this.j === coordinate2.j);
+    }
   }
 
   plus(coordinate2) {
@@ -13,7 +15,7 @@ class Coordinates {
   }
 
   isOpposite(coordinate2){
-    return (this.i == -1 * coordinate2.i) && (this.j == (-1 * coordinate2.j));
+    return (this.i === -1 * coordinate2.i) && (this.j === (-1 * coordinate2.j));
   }
 }
 

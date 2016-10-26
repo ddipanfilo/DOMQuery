@@ -181,6 +181,7 @@
 	    this.turning = false;
 	    const center = new Coordinates(12, 8);
 	    this.segments = [center];
+	    this.growTurns = 0;
 	  }
 	
 	  head(){
@@ -189,11 +190,29 @@
 	
 	  move(){
 	    this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
-	    this.segments.shift();
 	    this.turning = false;
+	
+	    if (this.eatApple()) {
+	      this.board.apple.spawn();
+	    }
+	
+	    if (this.growTurns > 0) {
+	      this.growTurns -= 1;
+	    } else {
+	      this.segments.shift();
+	    }
 	
 	    if (!this.validMove()) {
 	      this.segments = [];
+	    }
+	  }
+	
+	  eatApple(){
+	    if (this.head().equals(this.board.apple.position)) {
+	      this.growTurns += 3;
+	      return true;
+	    } else {
+	      return false;
 	    }
 	  }
 	
@@ -245,7 +264,9 @@
 	  }
 	
 	  equals(coordinate2) {
-	    return (this.i == coordinate2) && (this.j == coord2.j);
+	    if ((this.i === coordinate2.i) && (this.j === coordinate2.j)) {
+	      return (this.i === coordinate2.i) && (this.j === coordinate2.j);
+	    }
 	  }
 	
 	  plus(coordinate2) {
@@ -253,7 +274,7 @@
 	  }
 	
 	  isOpposite(coordinate2){
-	    return (this.i == -1 * coordinate2.i) && (this.j == (-1 * coordinate2.j));
+	    return (this.i === -1 * coordinate2.i) && (this.j === (-1 * coordinate2.j));
 	  }
 	}
 	

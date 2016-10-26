@@ -7,6 +7,7 @@ class Snake {
     this.turning = false;
     const center = new Coordinates(12, 8);
     this.segments = [center];
+    this.growTurns = 0;
   }
 
   head(){
@@ -15,11 +16,29 @@ class Snake {
 
   move(){
     this.segments.push(this.head().plus(Snake.DIRECTIONS[this.direction]));
-    this.segments.shift();
     this.turning = false;
+
+    if (this.eatApple()) {
+      this.board.apple.spawn();
+    }
+
+    if (this.growTurns > 0) {
+      this.growTurns -= 1;
+    } else {
+      this.segments.shift();
+    }
 
     if (!this.validMove()) {
       this.segments = [];
+    }
+  }
+
+  eatApple(){
+    if (this.head().equals(this.board.apple.position)) {
+      this.growTurns += 3;
+      return true;
+    } else {
+      return false;
     }
   }
 
