@@ -244,6 +244,12 @@
 	  eq(index) {
 	    return $l(this.nodes[index]);
 	  }
+
+	  text(string) {
+	    this.nodes.forEach(node => {
+	      node.textContent = string;
+	    });
+	  }
 	}
 
 	module.exports = DOMNodeCollection;

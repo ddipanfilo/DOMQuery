@@ -51,3 +51,8 @@ a {
   justify-content: space-between;
   width: 400px;
 }
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+}

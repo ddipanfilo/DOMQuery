@@ -67,6 +67,8 @@
 	    this.intervalId = window.setInterval(this.step.bind(this), 100);
 	
 	    $l(window).on("keydown", this.handleKeyEvent.bind(this));
+	
+	    this.populateScores();
 	  }
 	
 	  handleKeyEvent(e) {
@@ -104,6 +106,8 @@
 	      let flatCoordinateIndex = (coordinate.i * this.board.dim) + coordinate.j;
 	      this.$lis.eq(flatCoordinateIndex).addClass("apple");
 	    });
+	
+	    this.populateScores();
 	  }
 	
 	  step() {
@@ -117,6 +121,14 @@
 	      }
 	      window.clearInterval(this.intervalId);
 	    }
+	  }
+	
+	  populateScores(){
+	    let highScore = localStorage.getItem("highScore") || 150;
+	    $l(".high-score").text(`Highscore: ${highScore}`);
+	
+	    let currentScore = this.board.score;
+	    $l(".current-score").text(`Current Score: ${currentScore}`);
 	  }
 	}
 	
