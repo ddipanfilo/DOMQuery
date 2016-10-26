@@ -31,15 +31,14 @@ ul {
 figure {
   display: inline-block;
   border: 10px solid black;
-  height: 440px;
-  width: 440px;
+  height: 410px;
+  width: 410px;
 }
 
 li {
   float: left;
   width: 20px;
   height: 20px;
-  border: 1px solid green;
 }
 
 .snake {
