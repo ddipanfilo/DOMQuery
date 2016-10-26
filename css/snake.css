@@ -23,7 +23,6 @@ ul {
 }
 
 figure {
-  display: inline-block;
   border: 10px solid black;
   height: 400px;
   width: 400px;
@@ -37,4 +36,14 @@ li {
 
 .snake {
   background: green;
+}
+
+a {
+  text-decoration: none;
+}
+
+.extras {
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
 }
