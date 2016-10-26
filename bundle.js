@@ -209,7 +209,7 @@
 	
 	  eatApple(){
 	    if (this.head().equals(this.board.apple.position)) {
-	      this.growTurns += 20;
+	      this.growTurns += 2;
 	      return true;
 	    } else {
 	      return false;
@@ -219,6 +219,12 @@
 	  validMove(){
 	    if (!this.board.validPosition(this.head())) {
 	      return false;
+	    }
+	
+	    for (let i = 0; i < this.segments.length - 1; i++) {
+	      if (this.segments[i].equals(this.head())) {
+	        return false;
+	      }
 	    }
 	
 	    return true;
