@@ -1,9 +1,11 @@
-html, body, figure, figcaption, ul, li {
+html, body, figure, figcaption, ul, li, h1 {
   margin: 0;
   padding: 0;
   border: 0;
   font: inherit;
   text-align: inherit;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
 }
 
 body {
@@ -11,11 +13,19 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #3897f0;
+  color: white;
+}
+
+li {
+  /*background: white*/
 }
 
 h1 {
-  font-family: sans-serif;
+  margin-top: 20px;
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
+  font-size: 40px;
 }
 
 ul {
@@ -23,36 +33,39 @@ ul {
 }
 
 figure {
-  border: 10px solid black;
-  height: 400px;
-  width: 400px;
+  border: 10px solid white;
+  height: 600px;
+  width: 600px;
+  margin: 10px;
 }
 
 li {
   float: left;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
 }
 
 .snake {
-  background: green;
+  background: white;
 }
 
 .apple {
-  background: red;
+  background: white;
 }
 
 a {
   text-decoration: none;
+  color: white;
 }
 
 .extras {
   display: flex;
   justify-content: space-between;
-  width: 400px;
+  width: 610px;
 }
 
 .scores {
   display: flex;
   justify-content: space-between;
+  width: 610px;
 }
