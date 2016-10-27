@@ -4,7 +4,7 @@ DOMQuery is a library that that allows users to modify DOM elements.
 
 [DEMO: Snake made using this DOMQuery library](http://www.daviddipanfilo.com/DOMQuery/)
 
-[gameplay]: (https://github.com/ddipanfilo/DOMQuery/blob/master/img/snake_gampleplay.png)
+[gameplay]:https://github.com/ddipanfilo/DOMQuery/blob/master/img/snake_gampleplay.png
 
 ## Methods
 ###DOMNodeCollection
