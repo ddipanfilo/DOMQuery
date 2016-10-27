@@ -4,7 +4,7 @@ const DOMNodeCollection = require('./dom_node_collection.js');
 const readyCallbacks = [];
 let ready = false;
 
-window.$l = arg => {
+$l = arg => {
   switch(typeof(arg)){
     case "object":
       if (arg instanceof HTMLElement || arg === window) {
@@ -91,3 +91,5 @@ document.addEventListener('DOMContentLoaded', () => {
   ready = true;
   readyCallbacks.forEach( func => func() );
 });
+
+module.exports = $l;

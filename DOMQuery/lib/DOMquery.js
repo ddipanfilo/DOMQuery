@@ -50,7 +50,7 @@
 	const readyCallbacks = [];
 	let ready = false;
 
-	window.$l = arg => {
+	export default $l = arg => {
 	  switch(typeof(arg)){
 	    case "object":
 	      if (arg instanceof HTMLElement || arg === window) {
