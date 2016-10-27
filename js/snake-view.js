@@ -60,7 +60,7 @@ class View {
       this.render();
     } else {
       const currentScore = this.board.score;
-      if (window.localStorage.highScore === undefined || 
+      if (window.localStorage.highScore === undefined ||
         currentScore > parseInt(window.localStorage.highScore)) {
         localStorage.setItem("highScore", currentScore);
       }
