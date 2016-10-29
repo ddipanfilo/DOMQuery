@@ -10,7 +10,7 @@ DOMQuery is imported by downloading `DOMQuery/lib` and requiring `const $l = req
 
 ![Gameplay](./img/snake_gampleplay.png)
 
-### $l Functions
+## $l Functions
 #### `$l`
 This returns a packaged node element, if given a string or object.
 This returns passes callbacks to another function.
