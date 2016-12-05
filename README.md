@@ -2,9 +2,12 @@
 
 DOMQuery is a library that that allows users to modify DOM elements.
 
-### Import DOMQuery
-DOMQuery is imported by downloading `DOMQuery/lib` and requiring `const $l = require('../DOMQuery/lib/main.js');` at the top of Snake's `js/main.js` file.
+### Using DOMQuery
+DOMQuery is imported by downloading `DOMQuery/lib` and including it in the project directory.  Wherever DOMQuery is used, include the following in the file:
 
+``` JavaScript
+const $l = require('../DOMQuery/lib/main.js');
+```
 
 [DEMO: Snake made using this DOMQuery library](http://www.daviddipanfilo.com/DOMQuery)
 
